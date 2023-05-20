@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^9.2.5",
+    "mysql2": "^3.3.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
