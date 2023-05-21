@@ -58,7 +58,27 @@ class DB {
                 `UPDATE employee SET role_id = ? WHERE id = ?`, [roleId, employeeId]
             );
         }
+        // Update the given employee's manager
+        updateEmployeeManager(employeeId, managerId) {
+            return this.connection.promise().query(
+                `UPDATE employee SET manager_id = ? WHERE id = ?`, [managerId, employeeId]
+            );
+        }
 
+        // Delete a department
+        deleteEmployee(employeeId) {
+            return this.connection.promise().query(
+                `DELETE FROM employee WHERE id = ?`, employeeId
+            );
+        }
+
+        // Delete a role
+        deleteRole(roleId) {
+            return this.connection.promise().query(
+                `DELETE FROM role WHERE id = ?`, roleId
+            );
+        }
+        
         
 }
 

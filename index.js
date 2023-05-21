@@ -32,25 +32,28 @@ function mainMenu () {
         // based on their answer, call the appropriate function
         switch (ans.mainMenu) {
             case "View All Departments":
-                // viewAllDepartments();
+                viewAllDepartments();
                 break;
             case "View All Roles":
-                // viewAllRoles();
+                viewAllRoles();
                 break;
             case "View All Employees":
                 viewAllEmployees();
                 break;
             case "Add a Department":
-                // addDepartment();
+                addDepartment();
                 break;
             case "Add a Role":
-                // addRole();
+                addRole();
                 break;
             case "Add an Employee":
                 // addEmployee();
                 break;
             case "Update an Employee Role":
                 // updateEmployeeRole();
+                break;
+            case "Remove an Employee":
+                // removeEmployee();
                 break;
             case "Exit":
                 db.end();
@@ -69,5 +72,66 @@ function viewAllEmployees() {
     })
     .then(() => mainMenu());
 }
+
+function viewAllRoles() {
+    db.findAllRoles()
+    .then(([rows]) => {
+        let roles = rows;
+        console.log("\n");
+        console.table(roles);
+    })
+    .then(() => mainMenu());
+}
+
+function viewAllDepartments() {
+    db.findAllDepartments()
+    .then(([rows]) => {
+        let departments = rows;
+        console.log("\n");
+        console.table(departments);
+    })
+    .then(() => mainMenu());
+}
+
+function addDepartment() {
+    prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is the name of the department?"
+        }
+    ])
+    .then((ans) => {
+        db.createDepartment(ans)
+        .then(() => console.log(`Added ${ans.name} to the database`))
+        .then(() => mainMenu());
+    });
+}
+
+function addRole() {
+    prompt([
+        {
+            type: "input",
+            name: "title",
+            message: "What is the name of the role?"
+        },
+        {
+            type: "input",
+            name: "salary",
+            message: "What is the salary of the role?"
+        },
+        {
+            type: "input",
+            name: "department_id",
+            message: "What is the department ID of the role?"
+        }
+    ])
+    .then((ans) => {
+        db.createRole(ans)
+        .then(() => console.log(`Added ${ans.title} to the database`))
+        .then(() => mainMenu());
+    });
+}
+
 
 start();
