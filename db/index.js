@@ -78,6 +78,11 @@ class DB {
                 `DELETE FROM role WHERE id = ?`, roleId
             );
         }
+
+        // End the application
+        end() {
+            this.connection.end();
+        }
         
         
 }
