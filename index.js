@@ -23,8 +23,8 @@ function mainMenu () {
                 "Add a Department",
                 "Add a Role",
                 "Add an Employee",
-                "Remove an Employee",
                 "Update an Employee Role",
+                "Remove an Employee",
                 "Exit"
             ]
         }
